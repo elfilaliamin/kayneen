@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="output.css">
+    <title>Kayneen App</title>
+</head>
+<body class="flex transition-all">
+    <aside class=" flex flex-col justify-between w-64 h-screen bg-primary-500 text-white p-2 overflow-x-auto">
+        <div class="space-y-2">
+            <div>
+                <div class="w-full flex justify-center">
+                    <a href="app.html">
+                        <img src="media/logo white.png" class="h-12 w-auto mb-2" alt="Logo">
+                    </a>
+                </div>
+                <button id="Dashboard" class="flex w-full items-center px-3 gap-2 h-12 hover:bg-primary-700">
+                    <span class="material-icons">grid_view</span>
+                    <div class="font-bold">Tableau de bord</div>
+                    <span id="Dashboard-arrow" class="material-icons ml-auto rotate-180">keyboard_arrow_down</span>
+                </button>
+                <div id="Dashboard-options" class="hidden">
+                    <button class="w-full text-left pl-10 h-12 hover:bg-primary-700 font-bold">Add Student</button>
+                </div>
+            </div>
+            <button class="flex w-full items-center px-3 gap-2 h-12 hover:bg-primary-700" onclick="sidebar.application()">
+                <span class="material-icons">apps</span>
+                <div class="font-bold">Application</div>
+            </button>
+            <button id="Students" class="flex w-full items-center px-3 gap-2 h-12 hover:bg-primary-700">
+                <span class="material-icons">person_search</span>
+                <div class="font-bold">Stagiaires</div>
+                <span id="Students-arrow" class="material-icons ml-auto rotate-180">keyboard_arrow_down</span>
+            </button>
+            <div id="Students-options" class="hidden">
+                <button class="w-full text-left pl-10 h-12 hover:bg-primary-700 font-bold" onclick="sidebar.students1()">Ajouter Stagiaires</button>
+                <button class="w-full text-left pl-10 h-12 hover:bg-primary-700 font-bold" onclick="sidebar.students2()">Modifier Stagiaires</button>
+                <button class="w-full text-left pl-10 h-12 hover:bg-primary-700 font-bold" onclick="sidebar.students3()">Scanner Empreintes</button>
+            </div>
+            <button id="Administration" class="flex w-full items-center px-3 gap-2 h-12 hover:bg-primary-700">
+                <span class="material-icons">tune</span>
+                <div class="font-bold">Administration</div>
+                <span id="Administration-arrow" class="material-icons ml-auto rotate-180">keyboard_arrow_down</span>
+            </button>
+            <div id="Administration-options" class="hidden">
+                <button class="w-full text-left pl-10 h-12 hover:bg-primary-700 font-bold" onclick="sidebar.administrationLists()">Modifier les listes</button>
+                <button class="w-full text-left pl-10 h-12 hover:bg-primary-700 font-bold" onclick="sidebar.administrationReport()">Rapports</button>
+                <button class="w-full text-left pl-10 h-12 hover:bg-primary-700 font-bold" onclick="sidebar.changepassword()">Sécurité</button>
+            </div>
+            <button class="flex w-full items-center px-3 gap-2 h-12 hover:bg-primary-700">
+                <span class="material-icons">ios_share</span>
+                <div class="font-bold">Exporter</div>
+            </button>
+        </div>
+        <button class="flex w-full items-center px-3 gap-2 h-12 hover:bg-primary-700">
+            <span class="material-icons">logout</span>
+            <div class="font-bold">Se déconnecter</div>
+        </button>
+
+    </aside>
+
+    <div id="content" style="width: calc(100% - 16rem);" class="flex flex-col items-center h-screen w-full overflow-y-auto">
+        <div class="flex flex-col space-y-8 h-screen items-center justify-center flex-1 py-6">
+            <p class="text-primary-500 text-3xl font-bold">CHANGER LE MOT DE PASSE</p>
+            <form class="flex flex-col justify-center items-center">
+                <input id="current-password" class="border border-gray-300 px-4 py-3 w-96 mb-4 rounded-lg" type="password" placeholder="Entrez votre mot de passe actuel.">
+                <input id="new-password" class="border border-gray-300 px-4 py-3 w-96 mb-4 rounded-lg" type="password" placeholder="Entrez un nouveau mot de passe.">
+                <input id="confirm-password" class="border border-gray-300 px-4 py-3 w-96 mb-6 rounded-lg" type="password" placeholder="Répétez le nouveau mot de passe.">
+                <button class="text-lg py-2 px-6 bg-primary-500 text-white font-semibold rounded-full hover:bg-primary-400">Changer le mot de passe</button>
+            </form>
+        </div>
+    </div>
+     
+        
+    <script src="app.js"></script>
+</body>
+</html>

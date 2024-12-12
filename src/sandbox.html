@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar with Dropdown</title>
+  <link rel="stylesheet" href="output.css">
+  <style>
+    .hidden-submenu { display: none; }
+  </style>
+</head>
+<body class="bg-gray-100 flex">
+  <!-- Sidebar -->
+  <aside class="w-64 h-screen bg-gray-800 text-white p-4 space-y-4">
+    <div class="space-y-2">
+      <button class="w-full text-left p-2 rounded hover:bg-gray-700">Dashboard</button>
+      <button class="w-full text-left p-2 rounded hover:bg-gray-700">App</button>
+      <button class="w-full text-left p-2 rounded hover:bg-gray-700">List</button>
+
+      <!-- Admin with Dropdown -->
+      <div>
+        <button id="admin-button" class="w-full text-left p-2 rounded hover:bg-gray-700 flex justify-between items-center">
+          Admin
+          <span id="admin-arrow" class="ml-2">&#9654;</span>
+        </button>
+        <div id="admin-submenu" class="pl-4 space-y-2 hidden-submenu">
+          <button class="w-full text-left p-2 rounded hover:bg-gray-700">Password</button>
+          <button class="w-full text-left p-2 rounded hover:bg-gray-700">Cool</button>
+          <button class="w-full text-left p-2 rounded hover:bg-gray-700">Test</button>
+          <button class="w-full text-left p-2 rounded hover:bg-gray-700">Worked</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Content Area -->
+  <main class="flex-1 p-6">
+    <h1 class="text-3xl font-semibold text-gray-900">Content Area</h1>
+    <!-- Other content can go here -->
+  </main>
+
+  <!-- JavaScript for Dropdown -->
+  <script>
+    document.getElementById("admin-button").addEventListener("click", function() {
+      const submenu = document.getElementById("admin-submenu");
+      const arrow = document.getElementById("admin-arrow");
+      if (submenu.classList.contains("hidden-submenu")) {
+        submenu.classList.remove("hidden-submenu");
+        arrow.innerHTML = "&#9660;"; // Down arrow
+      } else {
+        submenu.classList.add("hidden-submenu");
+        arrow.innerHTML = "&#9654;"; // Right arrow
+      }
+    });
+  </script>
+</body>
+</html>

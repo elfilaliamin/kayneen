@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="output.css">
+    <title>Kayneen Login</title>
+</head>
+<body class="bg-kayneen flex justify-center items-center h-screen transition-all">
+    <form class="bg-white flex flex-col px-10 py-6 rounded-2xl w-96">
+        <img class="h-12 mx-auto my-3" src="media/Logo.png">
+        <input class="bg-gray-100 px-5 py-2 rounded-full mt-3" type="text" placeholder="Nom d'utilisateur" >
+        <input class="bg-gray-100 px-5 py-2 rounded-full mt-3" type="password" placeholder="Mot de passe">
+        <div class="flex gap-2 mt-3">
+            <input class="accent-primary-500 cursor-pointer" type="checkbox" checked>
+            <p>Se souvenir de moi</p>
+        </div>
+        <button class="bg-primary-500 text-white font-bold mt-4 py-2 rounded-full cursor-pointer hover:bg-primary-400">SE CONNECTER</button>
+        <p class="text-center mt-2">Mot de passe oublié ? &nbsp;<span class="text-primary-500 font-bold cursor-pointer">Contactez-nous</span></p>
+    </form>
+
+    <script src="login.js"></script>
+</body>
+</html>
