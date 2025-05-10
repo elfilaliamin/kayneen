@@ -1,0 +1,501 @@
+:root {
+    --main1: #7731D8;
+    --yellow: #FBBC05;
+    --blue: #0D5AB4;
+    --red: #D74343;
+    --green: #00953B;
+    --default-bg: #323232;
+    --red-bg: #f44336;
+    --green-bg: #4CAF50;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to right, #7731D8, #6422c2);
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    z-index: 999;
+}
+
+header a{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+.button{
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.fixed-circular-button{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    padding: 15px;
+    border: 1px solid #6422c2;
+    background-color: #7731D8;
+    color: white;
+}
+
+.fixed-circular-button:hover{
+    background-color: white;
+    color: #6422c2;
+}
+
+.red-btn{
+    border: 1px solid var(--red);
+    background-color: var(--red);
+    color: white;
+}
+
+.red-btn:hover{
+    background-color: white;
+    color: var(--red);
+}
+
+.yellow-btn{
+    border: 1px solid var(--yellow);
+    background-color: var(--yellow);
+    color: black;
+}
+
+.yellow-btn:hover{
+    background-color: white;
+    color: var(--yellow);
+}
+
+.blue-btn{
+    border: 1px solid var(--blue);
+    background-color: var(--blue);
+    color: white;
+}
+
+.blue-btn:hover{
+    background-color: white;
+    color: var(--blue);
+}
+
+.green-btn{
+    border: 1px solid var(--green);
+    background-color: var(--green);
+    color: white;
+}
+
+.green-btn:hover{
+    background-color: white;
+    color: var(--green);
+}
+
+.gray-btn{
+    border: 1px solid #E5E7EB;
+    background-color: #E5E7EB;
+    color: black;
+}
+
+.gray-btn:hover{
+    background-color: #D1D5DB;
+}
+
+.main-btn{
+    border: 1px solid var(--main1);
+    background-color: var(--main1);
+    color: white;
+}
+
+.main-btn:hover{
+    background-color: white;
+    color: var(--main1);
+}
+
+.input{
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.select{
+    width: 100%;
+    padding: 10px 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.search-bar input{
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border: gray solid 1px;
+    border-right: none;
+}
+
+.search-bar button{
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.search-bar select{
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    border-right: none;
+    border-top: gray solid 1px;
+    border-bottom: gray solid 1px;
+    min-width: 140px;
+}
+
+.card{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    height: 150px;
+    padding: 0 20px;
+    border-radius: 15px;
+    border: 2px solid var(--main1);
+}
+
+.card img{
+    height: 80%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--main1);
+    padding: 2px;
+}
+
+.card-info{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card button{
+    height: 30pxs;
+}
+
+.card-name{
+    color: var(--main1);
+    font-weight: bold;
+}
+
+.card-major{
+    color: grey;
+}
+
+.card-allow-green{
+    color: var(--green);
+}
+
+.list1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    height: 40px;
+    padding: 12px 0px;
+}
+
+.list1-info{
+    height: 100%;
+    display: flex;
+    gap: 15px;
+}
+
+.list1 img{
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 1px solid var(--main1);
+    padding: 2px;
+    object-fit: cover;
+}
+
+.list1-name{
+    font-weight: bold;
+    color: var(--main1);
+}
+
+.list1-major{
+    color: gray;
+}
+
+.list1-action{
+    display: flex;
+    gap: 15px;
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #323232;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    z-index: 1000;
+    font-size: 16px;
+
+    /* Animation */
+    opacity: 0;
+    transition: opacity 0.5s, bottom 0.5s;
+  }
+
+  /* Show the snackbar */
+  #snackbar.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+  }
+
+  /* Dashboard card */
+.dashboard-card{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid lightgrey;
+    padding: 20px;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover{
+    transform: translateY(-5px); /* Moves the card up slightly */
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.082); /* Adds a soft shadow */
+}
+
+.dashboard-card p{
+    margin: 0;
+}
+
+.dashboard-card .info1{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
+}
+
+.dashboard-card .material-icons-outlined{
+    background-color: lightgray;
+    border-radius: 50%;
+    padding: 15px;
+}
+
+.dashboard-card .info2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.dashboard-card  .progress-bar{
+    height: 7px;
+    width: 100%;
+    border-radius: 50px;
+    background-color: lightgray;
+    margin-top: -5px;
+}
+
+.dashboard-card .progress-bar-fill{
+    background-color: #00953B;
+    height: 100%;
+    width: 20%;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.semi-bold{
+    font-weight: 400;
+}
+
+.font-sm{
+    font-size: 14px;
+}
+
+.font-md{
+    font-size: 18px;
+}
+
+.font-lg{
+    font-size: 24px;
+}
+
+/* Dashboard Card Green theme */
+.green-theme .material-icons-outlined{
+    background-color: #DCFCE7;
+    color: #22C55E;
+}
+
+.green-theme .precentage-txt{
+    color: #22C55E;
+}
+
+.green-theme .progress-bar-fill{
+    background-color: #22C55E;
+}
+
+/* Dashboard Card Red theme */
+.red-theme .material-icons-outlined{
+    background-color: #FEE2E2;
+    color: #EF4444;
+}
+
+.red-theme .precentage-txt{
+    color: #EF4444;
+}
+
+.red-theme .progress-bar-fill{
+    background-color: #EF4444;
+}
+
+/* Dashboard Card blue theme */
+.blue-theme .material-icons-outlined{
+    background-color: #DBEAFE;
+    color: #3B82F6;
+}
+
+.blue-theme .precentage-txt{
+    color: #3B82F6;
+}
+
+.blue-theme .progress-bar-fill{
+    background-color: #3B82F6;
+}
+
+/* Tables */
+/*.table-container {
+    overflow-x: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1000px;
+    margin: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+thead th {
+    background-color: var(--main1);
+    color: white;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+thead th::after {
+    content: ' ⇅';
+    font-size: 0.8em;
+    color: #cce0ff;
+    position: absolute;
+    right: 10px;
+}
+
+thead .no-sort::after{
+    content: '';
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #eef5ff;
+}
+
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.table-action{
+    max-width: 200px;
+}
+
+.table-action button{
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.table-action .action1{
+    color: #22C55E;
+    background-color: #DCFCE7;
+    border-radius: 50px;
+}
+
+.table-action .action1:hover{
+    color: green;
+}
+
+.table-action .action2{
+    color: #3B82F6;
+    background-color: #DBEAFE;
+    border-radius: 50px;
+}
+
+.table-action .action2:hover{
+    color: rgb(46, 49, 228);
+}
+
+.table-action .action3{
+    color: #EF4444;
+    background-color: #FEE2E2;
+    border-radius: 50px;
+}
+
+.table-action .action3:hover{
+    color: #c52020;
+}

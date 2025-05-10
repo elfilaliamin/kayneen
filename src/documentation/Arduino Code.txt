@@ -1,0 +1,185 @@
+#include <Adafruit_Fingerprint.h>
+#include <SoftwareSerial.h>
+
+SoftwareSerial mySerial(2, 3); // Sensor TX to D2, RX to D3
+Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
+
+const int buzzerPin = 11;
+const int ledPin = 13;  // Built-in LED (orange light)
+
+bool checkMode = false;
+
+void setup() {
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, LOW);  // Turn off orange light
+
+  Serial.begin(9600);
+  while (!Serial);
+  finger.begin(57600);
+
+  if (finger.verifyPassword()) {
+    Serial.println("✅ Fingerprint sensor connected.");
+    beepSuccess();
+  } else {
+    Serial.println("❌ Sensor not found. Check wiring.");
+    beepError();
+    while (1);
+  }
+
+  finger.getTemplateCount();
+  Serial.print("Stored fingerprints: ");
+  Serial.println(finger.templateCount);
+
+  Serial.println("\nCommands:");
+  Serial.println("0 = Exit check mode");
+  Serial.println("1 <id> = Enroll fingerprint with ID");
+  Serial.println("2 <id> = Delete fingerprint with ID");
+  Serial.println("3 = Enter check mode");
+  Serial.println("5 = Delete ALL fingerprints");
+}
+
+void loop() {
+  if (Serial.available()) {
+    String command = Serial.readStringUntil('\n');
+    command.trim();
+
+    if (command.startsWith("1 ")) {
+      int id = command.substring(2).toInt();
+      enrollFingerprint(id);
+    } else if (command.startsWith("2 ")) {
+      int id = command.substring(2).toInt();
+      deleteFingerprint(id);
+    } else if (command == "3") {
+      checkMode = true;
+      Serial.println("🔍 Check mode activated");
+    } else if (command == "0") {
+      checkMode = false;
+      Serial.println("❌ Check mode exited");
+    } else if (command == "5") {
+      deleteAllFingerprints();
+    } else {
+      Serial.println("❓ Unknown command");
+      beepError();
+    }
+  }
+
+  if (checkMode) {
+    int id = getFingerprintID();
+    if (id >= 0) {
+      Serial.print("👆 Finger ID: ");
+      Serial.println(id);
+      beepSuccess();
+      delay(1000);
+    }
+  }
+}
+
+// 🔐 Enroll fingerprint
+void enrollFingerprint(int id) {
+  Serial.print("Place finger to register as ID ");
+  Serial.println(id);
+
+  int p = -1;
+  while (p != FINGERPRINT_OK) {
+    p = finger.getImage();
+  }
+
+  p = finger.image2Tz(1);
+  if (p != FINGERPRINT_OK) {
+    Serial.println("❌ Failed to convert image");
+    beepError();
+    return;
+  }
+
+  Serial.println("Remove finger...");
+  delay(2000);
+
+  Serial.println("Place same finger again...");
+  p = -1;
+  while (p != FINGERPRINT_OK) {
+    p = finger.getImage();
+  }
+
+  p = finger.image2Tz(2);
+  if (p != FINGERPRINT_OK) {
+    Serial.println("❌ Failed to convert second image");
+    beepError();
+    return;
+  }
+
+  p = finger.createModel();
+  if (p != FINGERPRINT_OK) {
+    Serial.println("❌ Fingerprints didn’t match");
+    beepError();
+    return;
+  }
+
+  p = finger.storeModel(id);
+  if (p == FINGERPRINT_OK) {
+    Serial.println("✅ Fingerprint stored!");
+    beepSuccess();
+  } else {
+    Serial.println("❌ Failed to store fingerprint");
+    beepError();
+  }
+}
+
+// ❌ Delete fingerprint
+void deleteFingerprint(int id) {
+  int p = finger.deleteModel(id);
+  if (p == FINGERPRINT_OK) {
+    Serial.print("✅ Fingerprint ID ");
+    Serial.print(id);
+    Serial.println(" deleted");
+    beepSuccess();
+  } else {
+    Serial.println("❌ Failed to delete fingerprint");
+    beepError();
+  }
+}
+
+// 🧹 Delete all
+void deleteAllFingerprints() {
+  int p = finger.emptyDatabase();
+  if (p == FINGERPRINT_OK) {
+    Serial.println("🧼 All fingerprints deleted");
+    beepSuccess();
+  } else {
+    Serial.println("❌ Failed to clear database");
+    beepError();
+  }
+}
+
+// 🔍 Check fingerprint
+int getFingerprintID() {
+  uint8_t p = finger.getImage();
+  if (p != FINGERPRINT_OK) return -1;
+
+  p = finger.image2Tz();
+  if (p != FINGERPRINT_OK) return -1;
+
+  p = finger.fingerSearch();
+  if (p != FINGERPRINT_OK) {
+    beepError();
+    return -1;
+  }
+
+  return finger.fingerID;
+}
+
+// 🔔 Buzzer feedback
+void beepSuccess() {
+  digitalWrite(buzzerPin, HIGH);
+  delay(500); // long beep
+  digitalWrite(buzzerPin, LOW);
+}
+
+void beepError() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(buzzerPin, HIGH);
+    delay(100);
+    digitalWrite(buzzerPin, LOW);
+    delay(100);
+  }
+}

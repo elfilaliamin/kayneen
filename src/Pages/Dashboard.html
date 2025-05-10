@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <link rel="stylesheet" href="../styles/components.css">
+        <link rel="stylesheet" href="../styles/styles.css">
+        <title>Dashboard</title>
+    </head>
+<body>
+    <header>
+        <a href="#">
+            <span class="material-icons-outlined">home</span>
+            <p>Accueil</p>
+        </a>
+        <a href="Dashboard.html">
+            <span class="material-icons-outlined">grid_view</span>
+            <p>Tableau de bord</p>
+        </a>
+        <a href="Auto-Present.html">
+            <span class="material-icons-outlined">list_alt</span>
+            <p>Auto-Présence</p>
+        </a>
+        <a href="students.html">
+            <span class="material-icons-outlined">person_search</span>
+            <p>Stagaires</p>
+        </a>
+        <a href="settings.html">
+            <span class="material-icons-outlined">settings</span>
+            <p>Paramètres</p>
+        </a>
+    </header>
+    <div class="content">
+        <div class="headline-container">
+            <h2>Attendance Dashboard</h2>
+            <p>Today's attendance overview and management</p>
+        </div>
+
+        <div class="dashboard-input">
+            <div class="input-left">
+                <input type="date" class="input" id="date" style="min-width: 200px;">
+                <button class="button main-btn" onclick="setTodayDate(); calculateAttendance(abslist)">Today</button>
+            </div>
+            <div class="input-right">
+                <input type="text" id="search-student" class="input" placeholder="Search Students..." style="min-width: 250px;">
+                <select class="select" id="major-list1">
+                    <option value="">All Majors</option>
+                    <option value="">GEOESA201</option>
+                    <option value="">GEOESA202</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="dashboard-cards">
+            <div class="dashboard-card red-theme">
+                <div class="info1">
+                    <span class="material-icons-outlined">calendar_month</span>
+                    <div>
+                        <p class="font-md">Absent Today</p>
+                        <p class="bold font-lg" id="abs-today-count">20</p>
+                    </div>
+                </div>
+                <div class="info2">
+                    <p class="font-sm t2">Total Students</p>
+                    <p class="font-sm bold precentage-txt" id="precentage-1">6.3%</p>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="progress-bar-fill-1"></div>
+                </div>
+            </div>
+            <div class="dashboard-card green-theme">
+                <div class="info1">
+                    <span class="material-icons-outlined">calendar_month</span>
+                    <div>
+                        <p class="font-md">Present Today</p>
+                        <p class="bold font-lg" id="present-today-count">20</p>
+                    </div>
+                </div>
+                <div class="info2">
+                    <p class="font-sm t2">Total Students</p>
+                    <p class="font-sm bold precentage-txt" id="precentage-2">6.3%</p>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="progress-bar-fill-2"></div>
+                </div>
+            </div>
+            <div class="dashboard-card blue-theme">
+                <div class="info1">
+                    <span class="material-icons-outlined" id="week-present-count">calendar_month</span>
+                    <div>
+                        <p class="font-md">Absent This week</p>
+                        <p class="bold font-lg" id="present-week-count">20</p>
+                    </div>
+                </div>
+                <div class="info2">
+                    <p class="font-sm t2">Total Students</p>
+                    <p class="font-sm bold precentage-txt" id="precentage-3">6.3%</p>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="progress-bar-fill-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-head">
+                <div class="table-head-heading">
+                    <p class="p1">Admin Permissions Panel</p>
+                    <p class="p2">Manage student attendance status</p>
+                </div>
+                <div class="table-head-buttons">
+                    <button class="button red-btn" onclick="filterBadStatusRows()">Display Absants Only</button>
+                    <button class="button gray-btn">Export Data</button>
+                </div>
+            </div>
+            <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th onclick="sortTable(0)">Full Name</th>
+                    <th onclick="sortTable(1)">Student ID</th>
+                    <th onclick="sortTable(2)">Major</th>
+                    <th class="no-sort">Status</th>
+                    <th class="no-sort">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="table-content">
+                  <tr>
+                    <td>Alice Johnson</td>
+                    <td>20230001</td>
+                    <td>Computer Science</td>
+                    <td><span class="status active">Active</span></td>
+                    <td class="table-action"> 
+                        <button class="button action1">Allow Student</button>
+                        <button class="button action2">View Details</button>
+                    </td>  
+                  </tr>
+                  <tr>
+                    <td>Bob Smith</td>
+                    <td>20230002</td>
+                    <td>Business</td>
+                    <td><span class="status inactive">Inactive</span></td>
+                    <td class="table-action"> 
+                        <button class="button action1">Allow Student</button>
+                        <button class="button action2">View Details</button>
+                    </td>               
+                  </tr>
+                  <tr>
+                    <td>Carol White</td>
+                    <td>20230003</td>
+                    <td>Engineering</td>
+                    <td><span class="status active">Active</span></td>
+                    <td class="table-action"> 
+                        <button class="button action1">Allow Student</button>
+                        <button class="button action2">View Details</button>
+                    </td>              
+                  </tr>
+                  <tr>
+                    <td>David Green</td>
+                    <td>20230004</td>
+                    <td>Mathematics</td>
+                    <td><span class="status inactive">Inactive</span></td>
+                    <td class="table-action"> 
+                        <button class="button action1">Allow Student</button>
+                        <button class="button action2">View Details</button>
+                    </td>               
+                  </tr>
+                  </tbody>
+              </table>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" style="display: none;"></div>
+
+    <div class="popup details" id="details" style="display: none">
+        <div class="details-info-container">
+            <img src="../images/profile.png">
+            <div class="details-info">
+                <p>Last Name</p>
+                <p>Fistname</p>
+                <p>Absent Hours</p>
+                <p>Authrised Hours</p>
+            </div>
+            <div class="details-info">
+                <p>:</p>
+                <p>:</p>
+                <p>:</p>
+                <p>:</p>
+            </div>
+            <div class="details-info">
+                <p>EL Filali</p>
+                <p>Mohamed Amin</p>
+                <p class="bold" style="color: var(--red);">20h</p>
+                <p class="bold" style="color: var(--green);">5h</p>
+            </div>
+        </div>
+        <button class="button main-btn" style="width: 100%; margin: auto;" onclick="cancel()">Cancle</button>
+    </div>
+
+    <div class="popup autorise-popup" style="display: none;">
+        <p>Do you confirm that you want to authorize <span>El Filali Mohamed Amin</span> to access the classes?</p>
+        <div class="popup-buttons">
+            <button class="button green-btn">Confirm</button>
+            <button class="button red-btn">Cancle</button>
+        </div>
+    </div>
+
+    <div class="content" style="display: none;">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="content" id="loading" style="display: block;">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script src="../../script/script.js"></script>
+    <script src="../../script/dashboard.js"></script>
+</body>
+</html>

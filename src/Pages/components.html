@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/components.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <a href="#">
+            <span class="material-icons-outlined">home</span>
+            <p>Home</p>
+        </a>
+        <a href="Dashboard.html">
+            <span class="material-icons-outlined">grid_view</span>
+            <p>Dashboard</p>
+        </a>
+        <a href="Auto-Present.html">
+            <span class="material-icons-outlined">list_alt</span>
+            <p>Auto-Present</p>
+        </a>
+        <a href="students.html">
+            <span class="material-icons-outlined">person_search</span>
+            <p>Students</p>
+        </a>
+        <a href="settings.html">
+            <span class="material-icons-outlined">settings</span>
+            <p>Settings</p>
+        </a>
+    </header>
+    <div class="content">
+        <div>
+            <button class="button red-btn">Delete</button>
+            <button class="button yellow-btn">Scan</button>
+            <button class="button blue-btn">Edit</button>
+            <button class="button green-btn">Save</button>
+            <button class="button main-btn">Send</button>
+            <button class="fixed-circular-button"><span class="material-icons-outlined">settings</span></button>    
+        </div>
+        <div style="margin-top: 20px; width: 300px;">
+            <input class="input" type="text" placeholder="Enter Your Text Here...">
+        </div>
+        <div style="margin-top: 20px; width: 300px;">
+            <select class="select">
+                <option value="">Option 1</option>
+                <option value="">Option 2</option>
+                <option value="">Option 3</option>
+                <option value="">Option 4</option>
+            </select>
+        </div>
+        <div style="margin-top: 20px; width: 500px;">
+            <div class="search-bar">
+                <input class="input" type="text" placeholder="Enter Your Text Here...">
+                <button class="button main-btn">
+                    <span class="material-icons-outlined">search</span>
+                </button>
+            </div>
+        </div>
+        <div style="margin-top: 20px; width: 500px;">
+            <div class="search-bar">
+                <input class="input" type="text" placeholder="Enter Your Text Here...">
+                <select name="" id="">
+                    <option value="">Option 1</option>
+                    <option value="">Option 2</option>
+                </select>
+                <button class="button main-btn">
+                    <span class="material-icons-outlined">search</span>
+                </button>
+            </div>
+        </div>
+        <div style="margin-top: 20px; width: 500px;">
+            <div class="card">
+                <img src="../images/profile.png">
+                <div class="card-info">
+                    <div class="card-txt">
+                        <p class="card-name">El Filali Mohamed Amin</p>
+                        <p class="card-major">Major: GEOESA</p>
+                        <p class="card-allow-green">ALLOWED</p>
+                    </div>
+                    <button class="button yellow-btn">Waiting...</button>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px; margin-left: 50px; margin-right: 50px;">
+            <div class="list1">
+                <div class="list1-info">
+                    <img src="../images/profile.png">
+                    <p class="list1-name">El Filali Mohamed Amin</p>
+                    <p class="list1-major">( GEOESA )</p>
+                </div>
+                <div class="list1-action">
+                    <button class="button yellow-btn">Scan</button>
+                    <button class="button blue-btn">Edit</button>
+                    <button class="button red-btn">Delete</button>
+                </div>
+            </div>
+        </div>
+        <div id="snackbar">
+            This is a snackbar notification!
+        </div>
+        <button style="margin-top: 20px;" class="button green-btn" onclick="showSnackbar('Item added to cart!', 'green')">
+            Show snackbar
+        </button>
+        <button style="margin-top: 20px;" class="button red-btn" onclick="showSnackbar('Error occurred!', 'red')">
+            Show snackbar
+        </button>
+        <button style="margin-top: 20px;" class="button main-btn" onclick="showSnackbar('Default notification!')">
+            Show snackbar
+        </button>
+
+        <div style="margin-top: 20px; width: 500px;">
+            <div class="dashboard-card green-theme">
+                <div class="info1">
+                    <span class="material-icons-outlined">delete</span>
+                    <div>
+                        <p class="font-md">Absent Today</p>
+                        <p class="bold font-lg">20</p>
+                    </div>
+                </div>
+                <div class="info2">
+                    <p class="font-sm t2">Total Students</p>
+                    <p class="font-sm bold precentage-txt">6.3%</p>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container" style="width: 100%">
+            <table id="studentTable">
+              <thead>
+                <tr>
+                  <th onclick="sortTable(0)">Full Name</th>
+                  <th onclick="sortTable(1)">Student ID</th>
+                  <th onclick="sortTable(2)">Major</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td>Carol White</td>
+                    <td>20230003</td>
+                    <td>Engineering</td>
+                    <td><span class="status active">Active</span></td>
+                    <td class="table-action"> 
+                      <button class="button action1">Allow Student</button>
+                      <button class="button action2">View Details</button>
+                    </td>                
+                </tr>
+                <tr>
+                    <td>Carol White</td>
+                    <td>20230003</td>
+                    <td>Engineering</td>
+                    <td><span class="status active">Active</span></td>
+                    <td class="table-action"> 
+                      <button class="button action1">Allow Student</button>
+                      <button class="button action2">View Details</button>
+                    </td>                
+                </tr>
+                <tr>
+                    <td>Carol White</td>
+                    <td>20230003</td>
+                    <td>Engineering</td>
+                    <td><span class="status active">Active</span></td>
+                    <td class="table-action"> 
+                      <button class="button action1">Allow Student</button>
+                      <button class="button action2">View Details</button>
+                    </td>                
+                </tr>
+                <tr>
+                    <td>Carol White</td>
+                    <td>20230003</td>
+                    <td>Engineering</td>
+                    <td><span class="status active">Active</span></td>
+                    <td class="table-action"> 
+                      <button class="button action1">Allow Student</button>
+                      <button class="button action2">View Details</button>
+                    </td>                
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    <script src="../../script/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+
+API Documentation for CSV Operations
+
+This API allows frontend applications to interact with CSV files stored on the server. 
+It supports four main operations: create, read, edit, and delete rows in CSV files.
+
+### API Routes:
+1. **GET /csv/:filename** - Get all rows from a CSV file (excluding rows marked with 'data-st' = 'ignor').
+2. **POST /csv/:filename** - Create a new row in the specified CSV file.
+3. **PUT /csv/:filename/:id** - Edit an existing row by its ID.
+4. **DELETE /csv/:filename/:id** - Soft delete a row by marking its 'data-st' as 'ignor'.
+
+---
+
+### Example Usage:
+
+1. **GET /csv/stdlist.csv** - Get all rows from the `stdlist.csv` file.
+   - Request:
+     GET http://localhost:3000/csv/stdlist.csv
+   - Response:
+     [{
+       "id": "1",
+       "name": "John Doe",
+       "data-st": ""
+     }, {
+       "id": "2",
+       "name": "Jane Smith",
+       "data-st": ""
+     }]
+   
+2. **POST /csv/stdlist.csv** - Add a new row to `stdlist.csv`.
+   - Request:
+     POST http://localhost:3000/csv/stdlist.csv
+     Headers:
+       Content-Type: application/json
+     Body:
+     {
+       "data": {
+         "name": "Alex Brown"
+       }
+     }
+   - Response:
+     {
+       "success": true,
+       "id": 3
+     }
+   
+3. **PUT /csv/stdlist.csv/1** - Update the row with ID 1 in `stdlist.csv`.
+   - Request:
+     PUT http://localhost:3000/csv/stdlist.csv/1
+     Headers:
+       Content-Type: application/json
+     Body:
+     {
+       "data": {
+         "name": "Johnathan Doe"
+       }
+     }
+   - Response:
+     {
+       "success": true
+     }
+   
+4. **DELETE /csv/stdlist.csv/2** - Soft delete the row with ID 2 in `stdlist.csv`.
+   - Request:
+     DELETE http://localhost:3000/csv/stdlist.csv/2
+   - Response:
+     {
+       "success": true
+     }
+
+---
+
+### Notes:
+- **CORS**: The server uses the `cors` package to allow requests from different origins (like running the frontend on a different port during development).
+- **CSV File Structure**: Each CSV file must have the columns `id` and `data-st`, where `data-st` is used to mark deleted rows as 'ignor'.
+
+### Installation Steps:
+1. Clone or download the project files.
+2. Run `npm install` to install dependencies (Express, CORS, CSV-parser, Fast-CSV).
+3. Start the server by running `node server.js` from the root directory.
+4. Access the frontend by navigating to `http://localhost:3000` in your browser.
+
+---
+
+### Example Frontend (script.js):
+
+```js
+const API_BASE = 'http://localhost:3000/csv/';
+
+async function create(csvFileName, dataObj) {
+  const res = await fetch(API_BASE + csvFileName, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ data: { ...dataObj, 'data-st': '' } }),
+  });
+  return res.json();
+}
+
+async function git(csvFileName) {
+  const res = await fetch(API_BASE + csvFileName);
+  return res.json();
+}
+
+async function edit(csvFileName, id, updatedDataObj) {
+  const res = await fetch(`${API_BASE}${csvFileName}/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ data: updatedDataObj }),
+  });
+  return res.json();
+}
+
+async function deleteRow(csvFileName, id) {
+  const res = await fetch(`${API_BASE}${csvFileName}/${id}`, {
+    method: 'DELETE',
+  });
+  return res.json();
+}
+```
+
+---
+
+### Troubleshooting:
+- Ensure CORS is enabled if your frontend and backend are on different ports.
+- If the CSV file doesn't exist, it will be created automatically with a header row.
+- All requests should be made using **HTTP methods** like GET, POST, PUT, and DELETE to interact with the API.
+
+
+---
+
+### 📦 JavaScript Example: Using the 4 Functions
+
+These examples assume you are using the functions from `script.js` in a browser environment.
+
+#### 1. Create a new row in stdlist.csv
+
+```js
+create("stdlist.csv", {
+  name: "Alice Johnson",
+  age: "23"
+}).then(console.log);
+```
+
+Expected Output:
+```json
+{ "success": true, "id": 4 }
+```
+
+---
+
+#### 2. Read all valid rows from stdlist.csv
+
+```js
+git("stdlist.csv").then(data => {
+  console.log("Fetched rows:", data);
+});
+```
+
+Expected Output:
+```json
+[
+  { "id": "1", "name": "John Doe", "age": "21", "data-st": "" },
+  { "id": "3", "name": "Alex Brown", "age": "22", "data-st": "" }
+]
+```
+
+---
+
+#### 3. Edit a row in stdlist.csv (e.g., ID = 1)
+
+```js
+edit("stdlist.csv", "1", {
+  name: "Johnathan Doe",
+  age: "24"
+}).then(console.log);
+```
+
+Expected Output:
+```json
+{ "success": true }
+```
+
+---
+
+#### 4. Soft-delete a row (ID = 3)
+
+```js
+deleteRow("stdlist.csv", "3").then(console.log);
+```
+
+Expected Output:
+```json
+{ "success": true }
+```
+
+After deletion, ID 3 will no longer show in the output of `git("stdlist.csv")`.
+
+---
+
+### 💡 Tip
+All these functions return Promises, so you can use `.then()` or `await` to handle the result.
+
+---
+
+### 📦 JavaScript Example: Using the 4 Functions (Updated)
+
+These examples assume you are using the functions from `script.js` in a browser environment.
+
+#### 1. Create a new row in stdlist.csv
+
+```js
+create("stdlist.csv", {
+  first_name: "Alice",
+  lastname: "Johnson",
+  major: "Computer Science",
+  permission: "yes",
+  img: "alice.jpg"
+}).then(console.log);
+```
+
+Expected Output:
+```json
+{ "success": true, "id": 4 }
+```
+
+---
+
+#### 2. Read all valid rows from stdlist.csv
+
+```js
+git("stdlist.csv").then(data => {
+  console.log("Fetched rows:", data);
+});
+```
+
+Expected Output:
+```json
+[
+  {
+    "id": "1",
+    "first_name": "John",
+    "lastname": "Doe",
+    "major": "Engineering",
+    "permission": "yes",
+    "img": "john.png",
+    "data-st": ""
+  },
+  {
+    "id": "2",
+    "first_name": "Alice",
+    "lastname": "Johnson",
+    "major": "Computer Science",
+    "permission": "yes",
+    "img": "alice.jpg",
+    "data-st": ""
+  }
+]
+```
+
+---
+
+#### 3. Edit a row in stdlist.csv (e.g., ID = 1)
+
+```js
+edit("stdlist.csv", "1", {
+  major: "Electrical Engineering",
+  img: "john_new.png"
+}).then(console.log);
+```
+
+Expected Output:
+```json
+{ "success": true }
+```
+
+---
+
+#### 4. Soft-delete a row (ID = 2)
+
+```js
+deleteRow("stdlist.csv", "2").then(console.log);
+```
+
+Expected Output:
+```json
+{ "success": true }
+```
+
+After deletion, ID 2 will no longer show in the output of `git("stdlist.csv")`.
+
+---
+
+
+How to add absent hours to students list:
+Exemple: incrementAbstime("1, 3");
+

@@ -1,0 +1,242 @@
+:root {
+    --main1: #7731D8;
+    --yellow: #FBBC05;
+    --blue: #0D5AB4;
+    --red: #D74343;
+    --green: #00953B;
+    --default-bg: #323232;
+    --red-bg: #f44336;
+    --green-bg: #4CAF50;
+}
+
+body{
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.content{
+    padding: 30px;
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+    background-color: #F9FAFB;
+}
+
+.overlay{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    z-index: 100;
+}
+
+.popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adjusted for spacing */
+    min-width: 350px;
+}
+
+.popup p{
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.popup-buttons{
+    display: flex;
+    justify-content: space-between; /* Space between buttons */
+    gap: 20px; /* Maintain gap between buttons */
+    width: 100%;
+}
+
+.popup-buttons button{
+    width: 100%;
+    font-size: 14px;
+}
+
+.popup img{
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #732ED3;
+    padding: 5px;
+}
+
+/* Student.html */
+.student-result{
+    padding: 25px 60px;
+}
+
+.student-search{
+    margin-top: 15px;
+
+}
+
+.student-search select{
+    width: 120px;
+}
+
+.confirmation p{
+    text-align: center;
+    font-size: 18px;
+    margin: 0;
+}
+
+/*** Auto Present ***/
+#auto-present-start{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#auto-present-start h2{
+    font-size: 28px;
+}
+
+#auto-present-start div{
+    display: flex;
+    gap: 10px;
+}
+
+#auto-present-start div select{
+    width: 250px;
+}
+
+#Auto-Present-result{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 1rem; /* Optional spacing between items */
+}
+
+#auto-present-list .headline{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Dasboard */
+.headline-container h2{
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.headline-container p{
+    margin: 0;
+    font-size: 18px;
+}
+
+.dashboard-input{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-input .input-left{
+    display: flex;
+    gap: 15px;
+}
+
+.dashboard-input .input-right{
+    display: flex;
+    gap: 15px;
+}
+
+.dashboard-cards{
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
+
+.table-container{
+    margin-top: 15px;
+}
+
+.table-head{
+    background-color: white;
+    padding: 25px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.table-head p{
+    margin: 0;
+}
+
+.table-head .p1{
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.table-head-buttons{
+    display: flex;
+    gap: 15px;
+}
+
+.details-info-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+    min-width: 450px;
+}
+
+.details-info{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.autorise-popup p{
+    font-size: 22px;
+    width: 500px;
+}
+
+/* Loading Page */
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: 8px solid #e0e0e0;
+    border-top: 8px solid var(--main1);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 10;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  
+  

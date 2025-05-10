@@ -1,25 +1,22 @@
 {
-  "name": "version-10",
+  "name": "simple-pff",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "build": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-  "devDependencies": {
-    "tailwindcss": "^3.4.14"
-  },
   "dependencies": {
-    "@serialport/parser-readline": "^12.0.0",
     "cors": "^2.8.5",
-    "express": "^4.21.1",
-    "material-icons": "^1.13.12",
-    "multer": "^1.4.5-lts.1",
-    "mysql2": "^3.11.4",
-    "serialport": "^12.0.0",
-    "ws": "^8.18.0"
+    "csv-parser": "^3.2.0",
+    "express": "^5.1.0",
+    "fast-csv": "^5.0.2",
+    "multer": "^1.4.5-lts.2",
+    "serialport": "^13.0.0",
+    "ws": "^8.18.1"
   }
 }
